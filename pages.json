@@ -1,0 +1,19 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "bobo 自定义组件库"
+			}
+		},
+		{
+			"path": "pages/cpt/camera",
+			"style": {
+				"navigationBarTitleText": "拍照上传测试"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationStyle":"custom"
+	}
+}

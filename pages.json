@@ -11,6 +11,12 @@
 			"style": {
 				"navigationBarTitleText": "拍照上传测试"
 			}
+		},
+		{
+			"path": "pages/cpt/table",
+			"style": {
+				"navigationBarTitleText": "表格"
+			}
 		}
 	],
 	"globalStyle": {

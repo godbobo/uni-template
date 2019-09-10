@@ -12,5 +12,12 @@ export default [
 		meta: {
 			title: '拍照上传测试'
 		}
-	}
+	},
+	{
+		path: '/pages/cpt/table',
+		name: 'cpt-table',
+		meta: {
+			title: '表格组件'
+		}
+	},
 ]

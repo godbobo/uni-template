@@ -13,6 +13,15 @@
 					</view>
 				</view>
 			</view>
+			<view class="title">显示</view>
+			<view class="cu-list menu sm-border">
+				<view class="cu-item arrow" @tap="handleJumpPage('cpt-table')">
+					<view class="content">
+						<text class="cuIcon-sort text-grey"></text>
+						<text class="text-grey">表格</text>
+					</view>
+				</view>
+			</view>
 			<view class="title">基于 ColorUI</view>
 			<view class="cu-list menu sm-border">
 				<view class="cu-item arrow">

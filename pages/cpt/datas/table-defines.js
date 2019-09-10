@@ -3,6 +3,7 @@ export default {
 		{
 			title: '序号',
 			key : 'id',
+			align: 'center'
 		},
 		{
 			title: '时间',
@@ -22,11 +23,15 @@ export default {
 		},
 		{
 			title: '数量',
-			key: 'count'
+			key: 'count',
+			formatter: function(row, index) {
+				return row.count + index
+			}
 		},
 		{
 			title: '操作',
-			slot: 'options'
+			slot: 'options',
+			width: 300
 		}
 	],
 	testData: [

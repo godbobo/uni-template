@@ -2,15 +2,15 @@
 	<view class="bt-container">
 		<view class="bt-header bt-flex">
 			<block v-for="(column, index) in columnsDefine" :key="index">
-				<view class="bt-th">{{column.title}}</view>
+				<view class="bt-th" :style="[{width: (column.width || 200) + 'rpx', textAlign: column.align || 'left'}]">{{column.title}}</view>
 			</block>
 		</view>
 		<block v-for="(row, rowIndex) in data" :key="rowIndex">
-			<view class="bt-row bt-flex" :class="[showStripe(rowIndex) ? 'stripe' : '']">
+			<view class="bt-row bt-flex" :class="[showStripe(rowIndex) ? 'stripe' : '']" @tap="clickRow(row, rowIndex)">
 				<block v-for="(td, tdIndex) in columnsDefine" :key="tdIndex">
-					<view class="bt-td">
+					<view class="bt-td" :style="[{width: (td.width || 200) + 'rpx', justifyContent: td.align || 'left'}]">
 						<slot v-if="td.slot" :name="td.slot" :data="{row: row, index: rowIndex}"></slot>
-						<text v-if="!td.slot">{{row[td.key]}}</text>
+						<text v-if="!td.slot">{{td.formatter ? td.formatter(row, rowIndex) : row[td.key]}}</text>
 					</view>
 				</block>
 			</view>
@@ -45,8 +45,13 @@
 			}
 		},
 		methods: {
+			// 判断是否显示斑马纹
 			showStripe(index) {
 				return index % 2 === 0 && this.stripe
+			},
+			// 行点击事件
+			clickRow(row, index) {
+				this.$emit('row-click', {row: row, index: index})
 			}
 		}
 	}
@@ -73,7 +78,6 @@
 				font-size: 16px;
 				font-weight: bold;
 				padding: 5px 20rpx;
-				width: 200rpx;
 			}
 		}
 		
@@ -81,10 +85,11 @@
 			border-top: 1px solid #e8eaec;
 			
 			.bt-td {
+				display: flex;
+				align-items: center;
 				flex-shrink: 0;
 				font-size: 14px;
 				padding: 5px 20rpx;
-				width: 200rpx;
 				word-break: break-all;
 			}
 		}

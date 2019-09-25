@@ -20,4 +20,11 @@ export default [
 			title: '表格组件'
 		}
 	},
+	{
+		path: '/pages/plugin/date-util',
+		name: 'plugin-date-util',
+		meta: {
+			title: '时间工具类'
+		}
+	},
 ]

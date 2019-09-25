@@ -17,6 +17,12 @@
 			"style": {
 				"navigationBarTitleText": "表格"
 			}
+		},
+		{
+			"path": "pages/plugin/date-util",
+			"style": {
+				"navigationBarTitleText": "时间工具类"
+			}
 		}
 	],
 	"globalStyle": {

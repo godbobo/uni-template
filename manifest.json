@@ -72,11 +72,14 @@
     },
     "h5" : {
         "devServer" : {
-            "port" : 620
+            "port" : 8100,
+            "https" : false
         },
         "title" : "bobo 自定义组件库",
         "router" : {
-            "mode" : "hash"
-        }
+            "mode" : "hash",
+            "base" : "/template/"
+        },
+        "domain" : "aqzscn.com"
     }
 }

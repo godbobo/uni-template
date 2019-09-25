@@ -43,6 +43,15 @@
 					</view>
 				</view>
 			</view>
+			<view class="title">工具类</view>
+			<view class="cu-list menu sm-border">
+				<view class="cu-item arrow" @tap="handleJumpPage('plugin-date-util')">
+					<view class="content">
+						<text class="cuIcon-camera text-grey"></text>
+						<text class="text-grey">时间转换</text>
+					</view>
+				</view>
+			</view>
 		</view>
 		
 		<view v-if="selectIndex === 2">

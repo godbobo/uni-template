@@ -62,7 +62,7 @@
 </template>
 
 <script>
-	import cubTabpage from '@/components/cub-tabpage'
+	import cubTabpage from '@/components/cub-tabpage/cub-tabpage.vue'
 	export default {
 		name: 'index-page',
 		components: {
@@ -70,6 +70,7 @@
 		},
 		data() {
 			return {
+				pageTitle: '',
 				selectIndex: 0,
 				tabList: [
 					{
@@ -91,11 +92,9 @@
 			}
 		},
 		computed: {
-			pageTitle() {
-				return this.$Route.meta.title
-			}
 		},
 		onLoad() {
+			this.pageTitle = this.$Route.meta.title
 		},
 		methods: {
 			switchTab(item) {

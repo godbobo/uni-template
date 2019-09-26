@@ -5,12 +5,17 @@
 				<view class="bt-th" :style="[{width: (column.width || 200) + 'rpx', textAlign: column.align || 'left'}]">{{column.title}}</view>
 			</block>
 		</view>
-		<block v-for="(row, rowIndex) in data" :key="rowIndex">
+		<block v-for="(row, rowIndex) in datas" :key="rowIndex">
 			<view class="bt-row bt-flex" :class="[showStripe(rowIndex) ? 'stripe' : '']" @tap="clickRow(row, rowIndex)">
 				<block v-for="(td, tdIndex) in columnsDefine" :key="tdIndex">
 					<view class="bt-td" :style="[{width: (td.width || 200) + 'rpx', justifyContent: td.align || 'left'}]">
+						<!-- #ifdef H5 -->
 						<slot v-if="td.slot" :name="td.slot" :data="{row: row, index: rowIndex}"></slot>
 						<text v-if="!td.slot">{{td.formatter ? td.formatter(row, rowIndex) : row[td.key]}}</text>
+						<!-- #endif -->
+						<!-- #ifndef H5 -->
+							<text>{{row[td.key]}}</text>
+						<!-- #endif -->
 					</view>
 				</block>
 			</view>
@@ -28,7 +33,7 @@
 					return []
 				}
 			},
-			data: {
+			datas: {
 				type: Array,
 				default: function() {
 					return []

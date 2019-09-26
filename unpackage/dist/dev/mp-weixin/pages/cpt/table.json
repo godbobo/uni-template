@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "表格",
+  "usingComponents": {
+    "b-table": "/components/b-table/index"
+  }
+}

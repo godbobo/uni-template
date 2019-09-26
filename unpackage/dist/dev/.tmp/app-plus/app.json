@@ -1,0 +1,22 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/cpt/camera",
+    "pages/cpt/table",
+    "pages/plugin/date-util"
+  ],
+  "window": {
+    "navigationStyle": "custom"
+  },
+  "nvueCompiler": "weex",
+  "renderer": "auto",
+  "splashscreen": {
+    "alwaysShowBeforeRender": true,
+    "autoclose": false
+  },
+  "appname": "uni-model",
+  "compilerVersion": "2.3.3",
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  }
+}

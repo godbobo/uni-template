@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "bobo 自定义组件库",
+  "usingComponents": {
+    "cub-tabpage": "/components/cub-tabpage/cub-tabpage"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "table-b-table-options": "/pages/cpt/table-b-table-options",
+    "cu-custom": "/colorui/components/cu-custom",
+    "b-table": "/components/b-table/b-table"
+  }
+}

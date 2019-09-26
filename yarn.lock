@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-uni-simple-router@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/uni-simple-router/-/uni-simple-router-1.2.2.tgz#c5c51f54fd47d0b076d84d0c744a8ac2ca9341a8"
-  integrity sha512-dX/qB5HlO5NKUZ/WwTB6Cr6KStWR7QEHOrd9ABXK7pawuBY78a8soYiGml+j8gcXH8urZFxCrELevFzue31RHg==
+uni-simple-router@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/uni-simple-router/-/uni-simple-router-1.2.5.tgz#2c71ff5c44639788776df96065e4d73378378483"
+  integrity sha512-S+I7mDszDxK++73sFZXThX1NODAtZfeyPiILY+KfZerVnBbFmxdGPRk1NbVGEI8K/B0mRHtwSu+L+BtedIhBYg==

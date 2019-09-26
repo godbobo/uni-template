@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "table-b-table-options": "/pages/cpt/table-b-table-options",
+    "b-table": "/components/b-table/index"
+  }
+}

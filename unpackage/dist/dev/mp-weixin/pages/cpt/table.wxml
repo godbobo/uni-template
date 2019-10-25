@@ -1,1 +1,0 @@
-<view><cu-custom vue-id="1" is-back="{{true}}" bgColor="bg-gradual-blue" bind:__l="__l" vue-slots="{{['content']}}"><view slot="content">{{pageTitle}}</view></cu-custom><b-table generic:scoped-slots-options="table-b-table-options" vue-id="2" columns-define="{{columnsDefine}}" stripe="{{true}}" datas="{{data}}" bind:__l="__l" vue-slots="{{['options']}}"></b-table></view>

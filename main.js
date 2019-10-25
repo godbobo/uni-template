@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App'
-import router from './router'
+import router from './utils/bobo-router'
 import cuCustom from './colorui/components/cu-custom.vue'
 
 // 使用自定义导航栏

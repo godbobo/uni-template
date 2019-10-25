@@ -23,6 +23,12 @@
 			"style": {
 				"navigationBarTitleText": "时间工具类"
 			}
+		},
+		{
+			"path": "pages/plugin/router",
+			"style": {
+				"navigationBarTitleText": "路由拦截"
+			}
 		}
 	],
 	"globalStyle": {

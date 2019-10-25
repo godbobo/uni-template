@@ -3,66 +3,98 @@
 		<cu-custom bgColor="bg-gradual-blue">
 			<block slot="content">{{pageTitle}}</block>
 		</cu-custom>
-		<view v-if="selectIndex === 0">
-			<view class="title">输入</view>
-			<view class="cu-list menu sm-border">
-				<view class="cu-item arrow">
-					<view class="content">
-						<text class="cuIcon-sort text-grey"></text>
-						<text class="text-grey">下拉选择框</text>
+		<block v-for="(page, pageIndex) in pageItems" :key="pageIndex">
+			<view v-show="selectIndex === pageIndex">
+				<block v-for="(type, index) in page" :key="index">
+					<view class="title">{{type.title}}</view>
+					<view class="cu-list menu sm-border">
+						<block v-for="(item, idx) in type.child" :key="idx">
+							<view class="cu-item arrow" @tap="handleJumpPage(item.path)">
+								<view class="content">
+									<text class="text-grey" :class="[item.icon]"></text>
+									<text class="text-grey">{{item.title}}</text>
+								</view>
+							</view>
+						</block>
 					</view>
-				</view>
+				</block>
 			</view>
-			<view class="title">显示</view>
-			<view class="cu-list menu sm-border">
-				<view class="cu-item arrow" @tap="handleJumpPage('cpt-table')">
-					<view class="content">
-						<text class="cuIcon-sort text-grey"></text>
-						<text class="text-grey">表格</text>
-					</view>
-				</view>
-			</view>
-			<view class="title">基于 ColorUI</view>
-			<view class="cu-list menu sm-border">
-				<view class="cu-item arrow">
-					<view class="content">
-						<text class="cuIcon-sort text-grey"></text>
-						<text class="text-grey">底部操作条</text>
-					</view>
-				</view>
-			</view>
-		</view>
-		
-		<view v-if="selectIndex === 1">
-			<view class="title">功能测试</view>
-			<view class="cu-list menu sm-border">
-				<view class="cu-item arrow" @tap="handleJumpPage('cpt-camera')">
-					<view class="content">
-						<text class="cuIcon-camera text-grey"></text>
-						<text class="text-grey">拍照上传</text>
-					</view>
-				</view>
-			</view>
-			<view class="title">工具类</view>
-			<view class="cu-list menu sm-border">
-				<view class="cu-item arrow" @tap="handleJumpPage('plugin-date-util')">
-					<view class="content">
-						<text class="cuIcon-camera text-grey"></text>
-						<text class="text-grey">时间转换</text>
-					</view>
-				</view>
-			</view>
-		</view>
-		
-		<view v-if="selectIndex === 2">
-			<view class="title">关于...</view>
-		</view>
+		</block>
 		
 	</cub-tabpage>
 </template>
 
 <script>
 	import cubTabpage from '@/components/cub-tabpage/cub-tabpage.vue'
+	
+	const pageItems = [
+		[
+			{
+				title: '输入',
+				child: [
+					{
+						icon: 'cuIcon-sort',
+						title: '下拉选择框',
+						path: ''
+					}
+				]
+			},
+			{
+				title: '显示',
+				child: [
+					{
+						icon: 'cuIcon-sort',
+						title: '表格',
+						path: '/pages/cpt/table'
+					}
+				]
+			},
+			{
+				title: '基于ColorUI',
+				child: [
+					{
+						icon: 'cuIcon-sort',
+						title: '底部操作条',
+						path: ''
+					}
+				]
+			},
+		],
+		[
+			{
+				title: '功能测试',
+				child: [
+					{
+						icon: 'cuIcon-camera',
+						title: '拍照上传',
+						path: '/pages/cpt/camera'
+					}
+				]
+			},
+			{
+				title: '工具类',
+				child: [
+					{
+						icon: 'cuIcon-camera',
+						title: '时间转换',
+						path: '/pages/plugin/date-util'
+					},
+					{
+						icon: 'cuIcon-camera',
+						title: '路由拦截',
+						path: '/pages/plugin/router'
+					}
+				]
+			}
+		],
+		[
+			{
+				title: '关于...',
+				child: []
+			}
+		]
+	]
+	
 	export default {
 		name: 'index-page',
 		components: {
@@ -70,7 +102,7 @@
 		},
 		data() {
 			return {
-				pageTitle: '',
+				pageTitle: '组件',
 				selectIndex: 0,
 				tabList: [
 					{
@@ -88,20 +120,23 @@
 						selectSrc: '/static/tabbar/about_cur.png',
 						text: '关于'
 					}
-				]
+				],
+				pageItems: pageItems
 			}
 		},
 		computed: {
 		},
 		onLoad() {
-			this.pageTitle = this.$Route.meta.title
 		},
 		methods: {
 			switchTab(item) {
 				this.selectIndex = item.index
 			},
 			handleJumpPage(url) {
-				this.$Router.push({name: url})
+				// this.$Router.push({name: url})
+				if (url) {
+					this.$Router.push({page: url})
+				}
 			}
 		}
 	}

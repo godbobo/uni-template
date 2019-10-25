@@ -24,7 +24,7 @@
 		},
 		data() {
 			return {
-				pageTitle: '',
+				pageTitle: '表格组件',
 				columnsDefine: tableDefines.testDefine,
 				data: tableDefines.testData
 			}
@@ -32,7 +32,7 @@
 		computed: {
 		},
 		onLoad() {
-			this.pageTitle = this.$Route.meta.title
+			// this.pageTitle = this.$Route.meta.title
 		}
 	}
 </script>

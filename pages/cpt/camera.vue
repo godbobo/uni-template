@@ -13,10 +13,12 @@
 	
 	export default {
 		name: 'cpt-camera',
-		computed: {
-			pageTitle() {
-				return this.$Route.meta.title
+		data() {
+			return {
+				pageTitle: '拍照上传测试'
 			}
+		},
+		onLoad() {
 		},
 		methods: {
 			handleChooseImage() {

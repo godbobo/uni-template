@@ -65,7 +65,7 @@
 		name: 'date-util-page',
 		data() {
 			return {
-				pageTitle: '',
+				pageTitle: '时间工具类',
 				timer: null,
 				du: new DateUtil()
 			}
@@ -92,7 +92,6 @@
 			}
 		},
 		onLoad() {
-			this.pageTitle = this.$Route.meta.title
 			this.timer = setInterval(() => {
 				this.du.build()
 			}, 1000)

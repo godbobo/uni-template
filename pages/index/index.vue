@@ -8,7 +8,7 @@
 			<view class="cu-list menu sm-border">
 				<view class="cu-item arrow">
 					<view class="content">
-						<text class="cuIcon-sort text-grey"></text>
+						<text class="cuIcon-unfold text-grey"></text>
 						<text class="text-grey">下拉选择框</text>
 					</view>
 				</view>
@@ -21,12 +21,18 @@
 						<text class="text-grey">表格</text>
 					</view>
 				</view>
+				<view class="cu-item arrow" @tap="handleJumpPage('cpt-message')">
+					<view class="content">
+						<text class="cuIcon-message text-grey"></text>
+						<text class="text-grey">提示</text>
+					</view>
+				</view>
 			</view>
 			<view class="title">基于 ColorUI</view>
 			<view class="cu-list menu sm-border">
 				<view class="cu-item arrow">
 					<view class="content">
-						<text class="cuIcon-sort text-grey"></text>
+						<text class="cuIcon-btn text-grey"></text>
 						<text class="text-grey">底部操作条</text>
 					</view>
 				</view>

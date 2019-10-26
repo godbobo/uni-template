@@ -27,4 +27,11 @@ export default [
 			title: '时间工具类'
 		}
 	},
+	{
+		path: '/pages/cpt/message',
+		name: 'cpt-message',
+		meta: {
+			title: '提示'
+		}
+	},
 ]

@@ -6,15 +6,29 @@ class Router {
 		Router.$root = this;
 	}
 	
+	// 路由跳转方法映射
+	routeMap = {
+		push: 'navigateTo',
+		replace: 'redirectTo',
+		replaceAll: 'reLaunch',
+		pushTab: 'switchTab'
+	}
+	
 	/**
 	 * 执行路由跳转
 	 */
 	_pushTo() {
 		return new Promise((resolve, reject) => {
-			const {page, params, method} = this.tempRoute
+			let {page, params, method} = this.tempRoute
+			// 对首次进入页面执行路由守卫时如果放行，method page params都为空 此时应该直接中断流程，无需抛出异常
+			if (!method && !page && !params) {
+				return
+			}
+			
 			let urlParams = '?'
 			if (!page) {
 				reject(new Error('参数page未填写'))
+				return
 			} else if (params && typeof(params) === 'object') {
 				// 处理参数，转换为url字符串
 				Object.keys(params).forEach(k => {
@@ -34,12 +48,23 @@ class Router {
 					}
 				})
 			}
+			
+			// 参数组装
 			if (urlParams.length === 1) {
 				urlParams = ''
 			} else {
 				urlParams = urlParams.substr(0, urlParams.length - 1)
 			}
 			
+			// 设置路由跳转方式
+			if (!method) {
+				method = 'navigateTo'
+			}
+			if (this.routeMap[method]) {
+				method = this.routeMap[method]
+			}
+			
+			// 调用系统跳转方法
 			uni[method]({
 				url: page + urlParams,
 				success: () => {
@@ -58,14 +83,11 @@ class Router {
 					resolve()
 				},
 				fail: (e) => {
-					this.tempRoute = null
 					reject(new Error('路由跳转失败！'))
 				}
 			})
 		})
 	}
-	
-	// 支持直接传递url字符串
 	
 	/**动态的导航到一个新 URL 保留浏览历史
 	 * navigateTo
@@ -83,6 +105,7 @@ class Router {
 		}
 		this.next(rule)
 	}
+	
 	/**动态的导航到一个新 URL 关闭当前页面，跳转到的某个页面。
 	 * redirectTo
 	 * @param {Object} rule
@@ -99,6 +122,7 @@ class Router {
 		}
 		this.next(rule)
 	}
+	
 	/**动态的导航到一个新 URL 关闭所有页面，打开到应用内的某个页面
 	 * 	reLaunch
 	 * @param {Object} rule
@@ -115,15 +139,33 @@ class Router {
 		}
 		this.next(rule)
 	}
+	
+	/** 跳转Tabbar
+	 * 	switchTab
+	 * @param {Object} rule
+	 */
+	pushTab(arg) {
+		const rule = {
+			method: 'switchTab'
+		}
+		if (typeof(arg) === 'string') {
+			rule.page = arg
+		} else if (typeof(arg) === 'object') {
+			rule.page = arg.page
+			rule.params = arg.params
+		}
+		this.next(rule)
+	}
+	
+	
 	/**
 	 * 返回到指定层级页面上
 	 */
 	back(delta = 1) {
 		// 返回上级
 		if (delta.constructor != Number) {
-			return console.error(
-				"返回层级参数必须是一个Number类型且必须大于0：" + delta
-			)
+			this._errorHandler(new Error('返回层级参数必须是一个Number类型且必须大于0：'))
+			return
 		}
 		uni.navigateBack({
 			delta
@@ -162,27 +204,37 @@ class Router {
 					page: args
 				}
 			} else if (!args) {
-				// 中断路由
+				// 中断路由 args = false
 				this.tempRoute = null
 				return
 			}
 			
 			if (!this.route) {
 				this.route = {
-					path: '/' + getCurrentPages()[0].route
+					page: '/' + getCurrentPages()[0].route
 				}
 			}
 			
 			this._next().then(args => {
 				this.next(args)
 			}).catch(e => {
+				this.tempRoute = null
 				this._errorHandler(e)
 			})
 		} else {
 			this._pushTo().catch(e => {
+				this.tempRoute = null
 				this._errorHandler(e)
 			})
 		}
+	}
+	
+	/**
+	 * 应用启动时执行一次路由检查（前置守卫，若通过则不做事情）
+	 */
+	doBeforeHooks() {
+		this.tempRoute = {}
+		this.next({})
 	}
 	
 	// 设置路由前置/后置守卫
@@ -225,11 +277,11 @@ Router.install = function(Vue) {
 		onLaunch: function() {
 		},
 		onLoad:function(props){
-			// 首次进入页面时,缓存中不存在当前路由信息，需要自行设置
+			// 首次进入页面时,缓存中不存在当前路由信息，需要初始化路由信息
 			if (!Router.$root.getCurrentRoute()) {
 				const rt = {
 					params: {},
-					path: '/' + getCurrentPages()[0].route
+					page: '/' + getCurrentPages()[0].route
 				}
 				if (props) {
 					Object.keys(props).forEach(k => {
@@ -248,6 +300,9 @@ Router.install = function(Vue) {
 					})
 				}
 				Router.$root.route = rt
+				
+				// 执行路由前置守卫
+				Router.$root.doBeforeHooks()
 			}
 			
 			// 自动获取页面标题(app端可能获取不到)

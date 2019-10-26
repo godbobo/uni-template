@@ -4,7 +4,7 @@ bobo-router 是一个基于uni-app框架的路由拦截插件，本项目借鉴�
 
 当然，由于不再定义路由表，也损失了一些能力，比如不能使用命名路由，不能在路由表中自定义路由元信息等。
 
-> 本人不是大神，且目前只是第一个版本，可能会存在各种各样的问题，望大家谨慎使用，并多多担待。
+> 本人不是大神，插件可能会存在各种各样的问题，望大家谨慎使用，并多多担待。
 
 ## 安装
 
@@ -40,14 +40,19 @@ this.$Router.replaceAll({
 	page: '/pages/index/index',
 	params: {}
 })
+
+// 跳转 Tabbar，等同于 uni.switchTab()
+this.$Router.pushTab({
+	page: '/pages/index/index',
+	params: {}
+})
 ```
 
 > Tips: 
 > 如果不需要传递参数，可以直接使用 this.$Router.push('/pages/index/index')
 
 > 注意：
-> 目前不支持与 Tab 有关的操作。原因是uni-app插件市场中已经有很多Tab栏的插件，都挺不错的，没有必要用系统的Tab页去增加系统的复杂性。
-> 如果确实是刚需，可以修改 bobo-router 的内容，代码比较简单，大家应该都可以修改。
+> pushTab传递的参数可通过this.$Route.params获取，但h5页面刷新之后就会丢失数据
 
 ## 路由拦截
 
@@ -61,9 +66,13 @@ this.$Router.replaceAll({
 // 路由全局拦截器 在这里处理登录、授权等相关操作
 router.beforeEach(function(to, from, next) {
 	console.log('前置守卫')
-	if (to.page === '/pages/plugin/router-error') {
-		// 仅为了测试守卫跳转功能
-		next({page: '/pages/plugin/router'})
+	// to.page不存在表示此次路由跳转仅为了执行路由守卫，若不需处理则直接放行，就不会执行任何路由操作了
+	if (from.page === '/pages/plugin/routers/r3' && !to.page) {
+	// 测试小程序跳转
+	// if (from.page === '/pages/index/index' && !to.page) {
+		next({page: '/pages/plugin/routers/r4', params: {
+			message: '我是从路由3刷新跳过来的'
+		}, method: 'redirectTo'})
 	} else {
 		next()
 	}
@@ -79,6 +88,21 @@ router.onError(function(e) {
 	console.log('错误：', e.message || '路由跳转失败')
 })
 ```
+
+参数解释：
+
+**to**：目标路由信息,包含`method`路由跳转方式、`page`页面地址和`params`页面参数
+
+> 注：在进入应用的第一个页面或h5刷新页面后会执行路由前置守卫，此时 to 中的属性均为 undefined
+
+**from**：当前路由信息，包含`page`页面地址和`params`页面参数
+
+**next**：下一步操作
+
+- `next(false)` 中断路由跳转
+- `next('/pages/index/index')` 执行指定页面的路由前置守卫，若当前操作指定过跳转方式，则使用该跳转方式，否则使用默认的push进行跳转
+- `next({page:'/pages/index/index',params:{},method:''})` 执行指定页面的路由前置守卫，method传入跳转方式，也可以不指定，效果同直接传入页面地址
+- `next()` 放行 执行跳转操作
 
 ## 参数解析
 

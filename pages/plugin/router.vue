@@ -4,9 +4,10 @@
 			<block slot="content">{{pageTitle}}</block>
 		</cu-custom>
 		<view class="btn-wrap">
-			<button type="primary" class="margin-top" @tap="push">push Table</button>
-			<button type="primary" class="margin-top" @tap="replace">replace Table</button>
-			<button type="primary" class="margin-top" @tap="replaceAll">return Home</button>
+			<button type="primary" class="margin-top" @tap="push">跳转路由1</button>
+			<button type="primary" class="margin-top" @tap="pushParams">跳转路由1带参数</button>
+			<button type="primary" class="margin-top" @tap="refresh">路由3测试h5刷新拦截</button>
+			<button type="primary" class="margin-top" @tap="replaceAll">返回首页</button>
 		</view>
 	</view>
 </template>
@@ -33,14 +34,17 @@
 			}
 		},
 		onLoad() {
-			console.log(JSON.stringify(this.$Route))
+			// console.log(JSON.stringify(this.$Route))
 		},
 		methods: {
 			push() {
-				this.$Router.push({page: '/pages/cpt/table', params: this.testObj})
+				this.$Router.push('/pages/plugin/routers/r1')
 			},
-			replace() {
-				this.$Router.replace('/pages/cpt/table')
+			pushParams() {
+				this.$Router.push({page: '/pages/plugin/routers/r1', params: this.testObj})
+			},
+			refresh() {
+				this.$Router.push('/pages/plugin/routers/r3')
 			},
 			replaceAll() {
 				this.$Router.replaceAll('/pages/index/index')

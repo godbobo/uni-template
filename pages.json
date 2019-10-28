@@ -53,6 +53,12 @@
 			"style": {
 				"navigationBarTitleText": "路由4"
 			}
+		},
+		{
+			"path": "pages/cpt/message",
+			"style": {
+				"navigationBarTitleText": "提示"
+			}
 		}
 	],
 	"globalStyle": {

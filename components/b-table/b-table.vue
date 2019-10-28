@@ -5,6 +5,7 @@
 				<view class="bt-th" :style="[{width: (column.width || 200) + 'rpx', textAlign: column.align || 'left'}]">{{column.title}}</view>
 			</block>
 		</view>
+		<view v-show="datas.length === 0" class="empty-area">{{emptyText}}</view>
 		<block v-for="(row, rowIndex) in datas" :key="rowIndex">
 			<view class="bt-row bt-flex" :class="[showStripe(rowIndex) ? 'stripe' : '']" @tap="clickRow(row, rowIndex)">
 				<block v-for="(td, tdIndex) in columnsDefine" :key="tdIndex">
@@ -24,6 +25,7 @@
 </template>
 
 <script>
+	// 若app端支持静态slot，则表格组件可预定义多个slot来代替动态slot
 	export default {
 		name: 'b-table',
 		props: {
@@ -42,6 +44,10 @@
 			stripe: {
 				type: Boolean,
 				default: false
+			},
+			emptyText: {
+				type: String,
+				default: '暂无数据'
 			}
 		},
 		data() {
@@ -102,5 +108,11 @@
 	
 	.stripe{
 		background: rgb(248, 248, 249);
+	}
+	
+	.empty-area {
+		line-height: 3;
+		color: #8799A3;
+		text-align: center;
 	}
 </style>

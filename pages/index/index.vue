@@ -33,7 +33,7 @@
 				title: '输入',
 				child: [
 					{
-						icon: 'cuIcon-sort',
+						icon: 'cuIcon-unfold',
 						title: '下拉选择框',
 						path: ''
 					}
@@ -43,9 +43,14 @@
 				title: '显示',
 				child: [
 					{
-						icon: 'cuIcon-sort',
+						icon: 'cuIcon-square',
 						title: '表格',
 						path: '/pages/cpt/table'
+					},
+					{
+						icon: 'cuIcon-message',
+						title: '提示',
+						path: '/pages/cpt/message'
 					}
 				]
 			},
@@ -53,7 +58,7 @@
 				title: '基于ColorUI',
 				child: [
 					{
-						icon: 'cuIcon-sort',
+						icon: 'cuIcon-cardboard',
 						title: '底部操作条',
 						path: ''
 					}
@@ -75,12 +80,12 @@
 				title: '工具类',
 				child: [
 					{
-						icon: 'cuIcon-camera',
+						icon: 'cuIcon-time',
 						title: '时间转换',
 						path: '/pages/plugin/date-util'
 					},
 					{
-						icon: 'cuIcon-camera',
+						icon: 'cuIcon-repeal',
 						title: '路由拦截',
 						path: '/pages/plugin/router'
 					}

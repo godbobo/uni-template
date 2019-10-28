@@ -3,13 +3,16 @@
     "pages/index/index",
     "pages/cpt/camera",
     "pages/cpt/table",
-    "pages/plugin/date-util"
+    "pages/plugin/date-util",
+    "pages/cpt/message"
   ],
   "subPackages": [],
   "window": {
     "navigationStyle": "custom"
   },
   "usingComponents": {
-    "cu-custom": "/colorui/components/cu-custom"
-  }
+    "cu-custom": "/colorui/components/cu-custom",
+    "message": "/components/bobo-message/bobo-message"
+  },
+  "sitemapLocation": "sitemap.json"
 }

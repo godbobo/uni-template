@@ -8400,7 +8400,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "bobo 自定义组件库" }, "pages/cpt/camera": { "navigationBarTitleText": "拍照上传测试" }, "pages/cpt/table": { "navigationBarTitleText": "表格" }, "pages/plugin/date-util": { "navigationBarTitleText": "时间工具类" } }, "globalStyle": { "navigationStyle": "custom" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "bobo 自定义组件库" }, "pages/cpt/camera": { "navigationBarTitleText": "拍照上传测试" }, "pages/cpt/table": { "navigationBarTitleText": "表格" }, "pages/plugin/date-util": { "navigationBarTitleText": "时间工具类" }, "pages/cpt/message": { "navigationBarTitleText": "提示" } }, "globalStyle": { "navigationStyle": "custom" } };exports.default = _default;
 
 /***/ }),
 /* 8 */
@@ -10285,7 +10285,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   path: '/pages/plugin/date-util',
   name: 'plugin-date-util',
   meta: {
-    title: '时间工具类' } }];exports.default = _default;
+    title: '时间工具类' } },
+
+
+{
+  path: '/pages/cpt/message',
+  name: 'cpt-message',
+  meta: {
+    title: '提示' } }];exports.default = _default;
 
 /***/ }),
 /* 29 */,
@@ -10715,32 +10722,6 @@ function numToZh() {var num = arguments.length > 0 && arguments[0] !== undefined
 }var _default =
 
 DateUtil;exports.default = _default;
-
-/***/ }),
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */,
-/* 68 */,
-/* 69 */,
-/* 70 */,
-/* 71 */,
-/* 72 */,
-/* 73 */
-/*!**********************************************************************************!*\
-  !*** /Users/godbobo/WorkSpace/HbuiderX/uni-template/components/b-table/index.js ***!
-  \**********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _bTable = _interopRequireDefault(__webpack_require__(/*! ./b-table.vue */ 74));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
-_bTable.default;exports.default = _default;
 
 /***/ })
 ]]);

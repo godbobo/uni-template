@@ -136,7 +136,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _tableDefines = _interopRequireDefault(__webpack_require__(/*! ./datas/table-defines */ 51));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var bTable = function bTable() {return Promise.all(/*! import() | components/b-table/index */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/b-table/index")]).then(__webpack_require__.t.bind(null, /*! @/components/b-table */ 73, 7));};var _default =
+
+var _tableDefines = _interopRequireDefault(__webpack_require__(/*! ./datas/table-defines */ 51));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var bTable = function bTable() {return __webpack_require__.e(/*! import() | components/b-table/b-table */ "components/b-table/b-table").then(__webpack_require__.bind(null, /*! @/components/b-table/b-table.vue */ 88));};var _default =
 
 {
   name: 'cpt-table-page',

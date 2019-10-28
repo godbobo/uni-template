@@ -25,6 +25,7 @@
 </template>
 
 <script>
+	// 若app端支持静态slot，则表格组件可预定义多个slot来代替动态slot
 	export default {
 		name: 'b-table',
 		props: {

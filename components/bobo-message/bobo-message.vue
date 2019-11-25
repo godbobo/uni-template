@@ -2,9 +2,9 @@
 	<view :style="{zIndex: zIndex}" class="container">
 		<block v-for="message in messageQueue" :key="message.id">
 			<view :class="[message.animation, backgroundClass(message)]" class="message">
-				<text v-if="message.type === 'info'" class="bm-icon info">&#xe60a;</text>
+				<text v-if="message.type === 'info'" class="bm-icon info">&#xe671;</text>
 				<text v-if="message.type === 'success'" class="bm-icon success">&#xe62f;</text>
-				<text v-if="message.type === 'warn'" class="bm-icon warn">&#xe60a;</text>
+				<text v-if="message.type === 'warn'" class="bm-icon warn">&#xe671;</text>
 				<text v-if="message.type === 'error'" class="bm-icon error">&#xe630;</text>
 				<text>{{message.content}}</text>
 			</view>
@@ -152,9 +152,15 @@
 </script>
 
 <style lang="scss" scoped>
+	
 	@font-face {
-		font-family: 'bobo-message-iconfont';
-		src: url('//at.alicdn.com/t/font_1477381_he3mzn2ywl9.ttf') format('truetype');
+	  font-family: 'bobo-message-iconfont';  /* project id 1477381 */
+	  src: url('https://at.alicdn.com/t/font_1477381_i3ji49ios6.eot');
+	  src: url('https://at.alicdn.com/t/font_1477381_i3ji49ios6.eot?#iefix') format('embedded-opentype'),
+	  url('https://at.alicdn.com/t/font_1477381_i3ji49ios6.woff2') format('woff2'),
+	  url('https://at.alicdn.com/t/font_1477381_i3ji49ios6.woff') format('woff'),
+	  url('https://at.alicdn.com/t/font_1477381_i3ji49ios6.ttf') format('truetype'),
+	  url('https://at.alicdn.com/t/font_1477381_i3ji49ios6.svg#iconfont') format('svg');
 	}
 
 	.container {

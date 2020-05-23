@@ -55,12 +55,12 @@
 				]
 			},
 			{
-				title: '基于ColorUI',
+				title: '导航',
 				child: [
 					{
 						icon: 'cuIcon-cardboard',
-						title: '底部操作条',
-						path: ''
+						title: '胶囊Tabbar',
+						path: '/pages/cpt/pill-bar'
 					}
 				]
 			},
